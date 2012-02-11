@@ -1,0 +1,18 @@
+# Can ignore specific files
+#.DS_Store
+
+# Use wildcards as well
+*~
+*.swp
+*.iml
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
+/.idea
+/.idea/*
+.project
+.settings
+.classpath
+target
+.idea
+gen

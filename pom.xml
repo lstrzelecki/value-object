@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sozix.superpom</groupId>
+		<artifactId>superpom-jdk</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<groupId>com.fizzner.valueobject</groupId>
+	<artifactId>value-object</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+
+	<modules>
+		<module>core</module>
+	</modules>
+	<repositories>
+		<repository>
+			<id>mvn-ext-libs</id>
+			<url>http://mvn-repo.googlecode.com/svn/repository</url>
+		</repository>
+	</repositories>
+
+	<scm>
+		<connection>scm:git:git@github.com:lstrzelecki/value-object.git</connection>
+		<url>scm:git:git@github.com:lstrzelecki/value-object.git</url>
+	</scm>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--
+				testing
+			-->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.10</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.easytesting</groupId>
+				<artifactId>fest-assert</artifactId>
+				<version>1.4</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
