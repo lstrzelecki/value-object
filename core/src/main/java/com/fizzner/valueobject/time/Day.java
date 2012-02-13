@@ -20,6 +20,11 @@ public class Day implements Displayable {
 
 	private Date value;
 
+	public Day(long millis) {
+		this(new Date(millis));
+
+	}
+
 	public Day() {
 		this(new Date());
 	}
@@ -71,5 +76,9 @@ public class Day implements Displayable {
 	@Override
 	public String print() {
 		return yyyyMMdd.format(value);
+	}
+
+	public long asMilliseconds() {
+		return value.getTime();
 	}
 }
