@@ -49,7 +49,7 @@ public class DayTest {
 		long time = dateWithNotZeroedTime.getTime();
 
 		//when
-		Day day = new Day(time);
+		Day day = Day.fromMillis(time);
 
 		//then
 		long dayAsMillis = day.asMilliseconds();
@@ -58,6 +58,87 @@ public class DayTest {
 		assertThat(cal.get(Calendar.MINUTE)).isZero();
 		assertThat(cal.get(Calendar.SECOND)).isZero();
 		assertThat(cal.get(Calendar.MILLISECOND)).isZero();
+	}
 
+	@Test
+	public void shouldCalculateDayDifferenceBetweenSameDay() {
+		//given
+		Day day = new Day(2012, Month.JANUARY, 15);
+		Day sameDay = new Day(2012, Month.JANUARY, 15);
+
+		//when
+		int numberDaysBetween = day.differenceWith(sameDay);
+
+		//then
+		assertThat(numberDaysBetween).isZero();
+	}
+
+	@Test
+	public void shouldCalculateDayDifferenceBetweenNextDay() {
+		//given
+		Day day = new Day(2012, Month.JANUARY, 15);
+		Day nextDay = new Day(2012, Month.JANUARY, 16);
+
+		//when
+		int numberDaysBetween = day.differenceWith(nextDay);
+
+		//then
+		assertThat(numberDaysBetween).isEqualTo(1);
+	}
+
+	@Test
+	public void shouldCalculateDayDifferenceBetween10DaysForward() {
+		//given
+		Day day = new Day(2012, Month.JANUARY, 15);
+		Day nextDay = new Day(2012, Month.JANUARY, 25);
+
+		//when
+		int numberDaysBetween = day.differenceWith(nextDay);
+
+		//then
+		assertThat(numberDaysBetween).isEqualTo(10);
+	}
+
+	@Test
+	public void shouldCalculateDayDifferenceBetweenPreviousDay() {
+		//given
+		Day day = new Day(2012, Month.JANUARY, 15);
+		Day prevDay = new Day(2012, Month.JANUARY, 14);
+
+		//when
+		int numberDaysBetween = day.differenceWith(prevDay);
+
+		//then
+		assertThat(numberDaysBetween).isEqualTo(-1);
+	}
+
+	@Test
+	public void shouldIncreaseDay() {
+		//given
+		int dayNo = 15;
+		Day day = new Day(2012, Month.FEBRUARY, dayNo);
+		int oneDay = 1;
+
+		//when
+		day.plusDays(oneDay);
+
+		//then
+		Day expectedDay = new Day(2012, Month.FEBRUARY, dayNo + oneDay);
+		assertThat(day).isEqualTo(expectedDay);
+	}
+
+	@Test
+	public void shouldDecreaseDay() {
+		//given
+		int dayNo = 15;
+		Day day = new Day(2012, Month.FEBRUARY, dayNo);
+		int oneDay = 1;
+
+		//when
+		day.minusDays(oneDay);
+
+		//then
+		Day expectedDay = new Day(2012, Month.FEBRUARY, dayNo - oneDay);
+		assertThat(day).isEqualTo(expectedDay);
 	}
 }

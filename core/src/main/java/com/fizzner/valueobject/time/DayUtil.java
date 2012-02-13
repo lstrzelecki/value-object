@@ -8,9 +8,10 @@ import java.util.Date;
  * @since 0.0.1
  */
 public class DayUtil {
+
+	private static final int MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
+
 	/**
-	 *
-	 *
 	 * @param year
 	 * @param month starts from 1
 	 * @param day
@@ -21,5 +22,20 @@ public class DayUtil {
 		instance.set(year, month.getMonthNumberForCalendar(), day,0,0,0);
 		instance.set(Calendar.MILLISECOND, 0);
 		return instance.getTime();
+	}
+
+	static int diffDay(Day source, Day targe) {
+		long currentMillis = source.asMilliseconds();
+		long anotherMillis = targe.asMilliseconds();
+		long diffMillis = anotherMillis - currentMillis;
+
+		long diffDays = diffMillis / MILLIS_PER_DAY;
+		return (int) diffDays;
+	}
+
+	static Day addDays(Day source, int daysToAdd) {
+		long addedDayInMillis = source.asMilliseconds() + daysToAdd * MILLIS_PER_DAY;
+		source.getValue().setTime(addedDayInMillis);
+		return source;
 	}
 }

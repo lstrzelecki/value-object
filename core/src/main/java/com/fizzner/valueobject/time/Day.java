@@ -20,13 +20,24 @@ public class Day implements Displayable {
 
 	private Date value;
 
-	public Day(long millis) {
-		this(new Date(millis));
-
+	public static Day today() {
+		return new Day();
 	}
 
-	public Day() {
+//	public static Day yesterday() {
+//
+//	}
+
+	public static Day fromMillis(long dayAsMillis) {
+		return new Day(dayAsMillis);
+	}
+
+	private Day() {
 		this(new Date());
+	}
+
+	private Day(long millis) {
+		this(new Date(millis));
 	}
 
 	private Day(Date value) {
@@ -58,13 +69,6 @@ public class Day implements Displayable {
 		return value;
 	}
 
-	@Override
-	public String toString() {
-		return "Day{" +
-				"value=" + value +
-				'}';
-	}
-
 	/**
 	 * Used for cxf parsing
 	 */
@@ -80,5 +84,52 @@ public class Day implements Displayable {
 
 	public long asMilliseconds() {
 		return value.getTime();
+	}
+
+	/**
+	 * @param another Day with which is calculated difference
+	 * @return number of days between current object day and given as argument. May return:
+	 * <ul>
+	 *     <li>0 - when day are same</li>
+	 *     <li>positive number of days param another is greater</li>
+	 *     <li>negative number of days param another is lower</li>
+	 * </ul>
+	 */
+	public int differenceWith(Day another) {
+		return DayUtil.diffDay(this, another);
+	}
+
+	public Day minusDays(int numberOfDays) {
+		DayUtil.addDays(this, -numberOfDays);
+		return this;
+	}
+
+	public Day plusDays(int numberOfDays) {
+		DayUtil.addDays(this, numberOfDays);
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		return "Day{" +
+				"value=" + value +
+				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Day day = (Day) o;
+
+		if (value != null ? !value.equals(day.value) : day.value != null) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return value != null ? value.hashCode() : 0;
 	}
 }
