@@ -15,7 +15,7 @@ public class DayTest {
 	@Test
 	public void shouldPrintDayInProperForm() throws Exception {
 		// given
-		Day day = new Day(2012, Month.JANUARY, 23);
+		Day day = Day.withDate(2012, Month.JANUARY, 23);
 
 		// when
 		String print = day.print();
@@ -28,7 +28,7 @@ public class DayTest {
 	public void shouldPrintDayNoWithZeroAtFirstIfDayIsOneNumber() throws Exception {
 		// given
 		int dayWithOneNumber = 3;
-		Day day = new Day(2012, Month.JANUARY, dayWithOneNumber);
+		Day day = Day.withDate(2012, Month.JANUARY, dayWithOneNumber);
 
 		// when
 		String print = day.print();
@@ -63,8 +63,8 @@ public class DayTest {
 	@Test
 	public void shouldCalculateDayDifferenceBetweenSameDay() {
 		//given
-		Day day = new Day(2012, Month.JANUARY, 15);
-		Day sameDay = new Day(2012, Month.JANUARY, 15);
+		Day day = Day.withDate(2012, Month.JANUARY, 15);
+		Day sameDay = Day.withDate(2012, Month.JANUARY, 15);
 
 		//when
 		int numberDaysBetween = day.differenceWith(sameDay);
@@ -76,8 +76,8 @@ public class DayTest {
 	@Test
 	public void shouldCalculateDayDifferenceBetweenNextDay() {
 		//given
-		Day day = new Day(2012, Month.JANUARY, 15);
-		Day nextDay = new Day(2012, Month.JANUARY, 16);
+		Day day = Day.withDate(2012, Month.JANUARY, 15);
+		Day nextDay = Day.withDate(2012, Month.JANUARY, 16);
 
 		//when
 		int numberDaysBetween = day.differenceWith(nextDay);
@@ -89,8 +89,8 @@ public class DayTest {
 	@Test
 	public void shouldCalculateDayDifferenceBetween10DaysForward() {
 		//given
-		Day day = new Day(2012, Month.JANUARY, 15);
-		Day nextDay = new Day(2012, Month.JANUARY, 25);
+		Day day = Day.withDate(2012, Month.JANUARY, 15);
+		Day nextDay = Day.withDate(2012, Month.JANUARY, 25);
 
 		//when
 		int numberDaysBetween = day.differenceWith(nextDay);
@@ -102,8 +102,8 @@ public class DayTest {
 	@Test
 	public void shouldCalculateDayDifferenceBetweenPreviousDay() {
 		//given
-		Day day = new Day(2012, Month.JANUARY, 15);
-		Day prevDay = new Day(2012, Month.JANUARY, 14);
+		Day day = Day.withDate(2012, Month.JANUARY, 15);
+		Day prevDay = Day.withDate(2012, Month.JANUARY, 14);
 
 		//when
 		int numberDaysBetween = day.differenceWith(prevDay);
@@ -116,14 +116,14 @@ public class DayTest {
 	public void shouldIncreaseDay() {
 		//given
 		int dayNo = 15;
-		Day day = new Day(2012, Month.FEBRUARY, dayNo);
+		Day day = Day.withDate(2012, Month.FEBRUARY, dayNo);
 		int oneDay = 1;
 
 		//when
 		day.plusDays(oneDay);
 
 		//then
-		Day expectedDay = new Day(2012, Month.FEBRUARY, dayNo + oneDay);
+		Day expectedDay = Day.withDate(2012, Month.FEBRUARY, dayNo + oneDay);
 		assertThat(day).isEqualTo(expectedDay);
 	}
 
@@ -131,14 +131,14 @@ public class DayTest {
 	public void shouldDecreaseDay() {
 		//given
 		int dayNo = 15;
-		Day day = new Day(2012, Month.FEBRUARY, dayNo);
+		Day day = Day.withDate(2012, Month.FEBRUARY, dayNo);
 		int oneDay = 1;
 
 		//when
 		day.minusDays(oneDay);
 
 		//then
-		Day expectedDay = new Day(2012, Month.FEBRUARY, dayNo - oneDay);
+		Day expectedDay = Day.withDate(2012, Month.FEBRUARY, dayNo - oneDay);
 		assertThat(day).isEqualTo(expectedDay);
 	}
 }

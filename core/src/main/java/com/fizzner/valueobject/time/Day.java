@@ -24,12 +24,20 @@ public class Day implements Displayable {
 		return new Day();
 	}
 
-//	public static Day yesterday() {
-//
-//	}
+	public static Day yesterday() {
+		return today().minusDays(1);
+	}
+	
+	public static Day tomorrow() {
+		return today().plusDays(1);
+	}
 
 	public static Day fromMillis(long dayAsMillis) {
 		return new Day(dayAsMillis);
+	}
+
+	public static Day withDate(int year, Month month, int day) {
+		return new Day(year, month, day);
 	}
 
 	private Day() {
@@ -44,7 +52,7 @@ public class Day implements Displayable {
 		this.value = asDateWithResetTime(value);
 	}
 
-	public Day(int year, Month month, int day) {
+	private Day(int year, Month month, int day) {
 		value = asDateWithResetTime(year, month, day);
 	}
 
