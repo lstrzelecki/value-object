@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>com.fizzner.valueobject</groupId>
-	<artifactId>value-object</artifactId>
+	<artifactId>vobject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
