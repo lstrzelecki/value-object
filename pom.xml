@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.sozix.superpom</groupId>
 		<artifactId>superpom-jdk</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.3</version>
 	</parent>
 
 	<groupId>com.fizzner.valueobject</groupId>
@@ -20,8 +20,8 @@
 	</modules>
 	<repositories>
 		<repository>
-			<id>mvn-ext-libs</id>
-			<url>http://mvn-repo.googlecode.com/svn/repository</url>
+			<id>repo-releases</id>
+			<url>http://repo-releases.googlecode.com/svn/repo</url>
 		</repository>
 	</repositories>
 
