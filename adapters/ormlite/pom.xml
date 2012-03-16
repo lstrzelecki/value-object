@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.fizzner.valueobject</groupId>
 		<artifactId>vobject-adapter</artifactId>
-		<version>0.0.2</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>vobject-adapter-ormlite</artifactId>
 	<name>${project.artifactId}</name>
