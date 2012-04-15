@@ -19,8 +19,8 @@ public class DayUtil {
 	 */
 	public static Date asDate(int year, Month month, int day) {
 		Calendar instance = Calendar.getInstance();
-		instance.set(year, month.getMonthNumberForCalendar(), day,0,0,0);
-		instance.set(Calendar.MILLISECOND, 0);
+		instance.clear();
+		instance.set(year, month.getMonthNumberForCalendar(), day);
 		return instance.getTime();
 	}
 

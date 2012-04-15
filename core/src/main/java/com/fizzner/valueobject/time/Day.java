@@ -27,13 +27,17 @@ public class Day implements Displayable {
 	public static Day yesterday() {
 		return today().minusDays(1);
 	}
-	
+
 	public static Day tomorrow() {
 		return today().plusDays(1);
 	}
 
 	public static Day fromMillis(long dayAsMillis) {
 		return new Day(dayAsMillis);
+	}
+
+	public static Day fromDate(Date date) {
+		return new Day(date);
 	}
 
 	public static Day withDate(int year, Month month, int day) {
@@ -57,18 +61,15 @@ public class Day implements Displayable {
 	}
 
 	private Date asDateWithResetTime(int year, Month month, int day) {
-		Calendar instance = Calendar.getInstance();
-		instance.set(year, month.getMonthNumberForCalendar(), day,0,0,0);
-		instance.set(Calendar.MILLISECOND, 0);
-		return instance.getTime();
+		return DayUtil.asDate(year, month, day);
 	}
-	
+
 	private Date asDateWithResetTime(Date date) {
 		Calendar instance = Calendar.getInstance();
 		instance.setTime(date);
 		instance.set(Calendar.HOUR_OF_DAY, 0);
-		instance.set(Calendar.MINUTE,0);
-		instance.set(Calendar.SECOND,0);
+		instance.set(Calendar.MINUTE, 0);
+		instance.set(Calendar.SECOND, 0);
 		instance.set(Calendar.MILLISECOND, 0);
 		return instance.getTime();
 	}
@@ -97,11 +98,11 @@ public class Day implements Displayable {
 	/**
 	 * @param another Day with which is calculated difference
 	 * @return number of days between current object day and given as argument. May return:
-	 * <ul>
-	 *     <li>0 - when day are same</li>
-	 *     <li>positive number of days param another is greater</li>
-	 *     <li>negative number of days param another is lower</li>
-	 * </ul>
+	 *         <ul>
+	 *         <li>0 - when day are same</li>
+	 *         <li>positive number of days param another is greater</li>
+	 *         <li>negative number of days param another is lower</li>
+	 *         </ul>
 	 */
 	public int differenceWith(Day another) {
 		return DayUtil.diffDay(this, another);
@@ -120,18 +121,24 @@ public class Day implements Displayable {
 	@Override
 	public String toString() {
 		return "Day{" +
-				"value=" + value +
-				'}';
+			   "value=" + value +
+			   '}';
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 
 		Day day = (Day) o;
 
-		if (value != null ? !value.equals(day.value) : day.value != null) return false;
+		if (value != null ? !value.equals(day.value) : day.value != null) {
+			return false;
+		}
 
 		return true;
 	}
