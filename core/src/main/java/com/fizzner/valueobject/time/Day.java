@@ -1,7 +1,7 @@
 package com.fizzner.valueobject.time;
 
 import com.fizzner.valueobject.Displayable;
-
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +11,7 @@ import java.util.Date;
  * @author Lukasz Strzelecki
  * @since 0.0.1
  */
-public class Day implements Displayable {
+public class Day implements Displayable, Serializable {
 
 	public static final String PROPER_FORMAT = "yyyy-MM-dd";
 
@@ -120,9 +120,7 @@ public class Day implements Displayable {
 
 	@Override
 	public String toString() {
-		return "Day{" +
-			   "value=" + value +
-			   '}';
+		return print();
 	}
 
 	@Override
